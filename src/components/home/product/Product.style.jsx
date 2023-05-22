@@ -5,6 +5,7 @@ export const StyledProduct = styled.div`
     flex-direction: column;
     background-color: sandybrown;
     min-width: 180px;
+    max-width: 380px;
     flex-grow: 1;
     height: 300px;
 `;
