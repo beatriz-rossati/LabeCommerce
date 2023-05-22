@@ -1,5 +1,5 @@
 import {StyledCart} from "./Cart.style"
-import Item from "./Item";
+import Item from "./item/Item";
 export default function Home() {
 
     return(

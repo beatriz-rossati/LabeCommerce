@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { StyledHome } from "./Home.style"
-import Product from "./Product";
+import Product from "./product/Product";
 
-export default function Home({ products }) {
-
-    const [list, setList] = useState(products.sort((a, b) => a.name > b.name ? 1 : -1));
+export default function Home({ setProductList, products}) {
 
     const applySort = (event) => {
 
-        const sortedProducts = [...list]
+        const sortedProducts = [...products]
         const selectedOption = event.target.value
 
         switch (selectedOption) {
@@ -25,21 +23,22 @@ export default function Home({ products }) {
                 sortedProducts.sort((a, b) => Number(b.price) - Number(a.price));
                 break;
         }
-        setList([...sortedProducts]);
+        setProductList([...sortedProducts]);
+    
     }
 
-    const rendeList = list.map(
-        product => <>
+    const renderList = products.map(
+        product => 
+        <>
             <Product product={product} />
         </>
     )
-
 
     return (
         <>
             <StyledHome>
                 <header>
-                    <h3>Quantidade de produtos</h3>
+                    <h3>Quantidade de produtos: {products.length}</h3>
                     <div><label for="order">Ordenar:</label>
                         <select id="order" onChange={applySort} onLoad={applySort}>
                             <option value="az">A-Z</option>
@@ -49,7 +48,7 @@ export default function Home({ products }) {
                         </select>
                     </div>
                 </header>
-                {rendeList}
+                {renderList}
             </StyledHome>
         </>
     );

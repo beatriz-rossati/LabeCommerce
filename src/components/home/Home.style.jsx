@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledHome = styled.div`
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-content: flex-start;
     gap: 20px;
     background-color: teal;
@@ -20,6 +20,7 @@ export const StyledHome = styled.div`
     header{
         padding: 10px;
         background-color: aquamarine;
+        border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
