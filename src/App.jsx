@@ -3,14 +3,14 @@ import Home from './components/home/Home'
 import Cart from './components/cart/Cart'
 import Filter from './components/filter/Filter'
 import { GlobalStyle } from './GlobalStyle'
-import getProductList from './assets/productList'
+import getProductList from './data/productList'
 
 function App() {
 
   const [filter, setFilter] = useState({ minPrice: null, maxPrice: null })
-
   const [productList, setProductList] = useState(getProductList())
-  //.sort((a, b) => a.name > b.name ? 1 : -1)
+  const [cartItems, setCartItems] = useState ([])
+
   const [maxValue] = useState(Math.max( ...getProductList().map((product) => product.price) ))
 
   useEffect(() => {
@@ -23,9 +23,19 @@ function App() {
     if (filter.maxPrice) {
       filteredList = filteredList.filter((product) => product.price < filter.maxPrice)
     }
+    if (filter.textFilter) {
+      filteredList = filteredList.filter((product) => product.name.includes(filter.textFilter))
+    }
     setProductList(filteredList)
 
   }, [filter])
+
+  const removeItem = (id) => {
+    const filteredList = cartItems.filter ((item)=>{
+      return item.id !== id
+    })
+    setCartItems (filteredList)
+  }
 
 
   return (
@@ -36,11 +46,16 @@ function App() {
         maxValue={maxValue+10}
       />
       <Home
-        //filter = {filter}
         setProductList={setProductList}
-        products={productList}
+        products={productList} 
+        setCartItems = {setCartItems}
+        cartItems = {cartItems}
       />
-      <Cart />
+      <Cart 
+      setCartItems = {setCartItems}
+      cartItems = {cartItems}
+      removeItem = {removeItem}
+      />
     </main>
 
   )

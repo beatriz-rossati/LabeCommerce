@@ -5,7 +5,7 @@ export const StyledHome = styled.div`
     justify-content: space-around;
     align-content: flex-start;
     gap: 20px;
-    background-color: teal;
+    background-color:  #ffffff26;
     width: auto;
     width: 80%;
     min-width: 200px;
@@ -19,7 +19,8 @@ export const StyledHome = styled.div`
 
     header{
         padding: 10px;
-        background-color: aquamarine;
+        background-color: #191043;
+        color: #d3d1d1;
         border-radius: 10px;
         display: flex;
         align-items: center;
