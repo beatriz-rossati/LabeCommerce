@@ -1,12 +1,13 @@
-import { StyledItem } from "./Item.style";
-export default function Item() {
+import { StyledItem, StyledItemName } from "./Item.style";
+export default function Item({cartItem, removeItem}) {
 
     return (
         <>
             <StyledItem>
-                <span>Produto</span>
-                <span>Quantidade: {"2"} <span> + </span> <span> - </span></span>
-                <button> Remover </button>
+                <StyledItemName>{cartItem.name}</StyledItemName>
+                <span>Quantidade: {cartItem.quantity} </span>
+                <span>{`R$ ${cartItem.price.toFixed(2)}`}</span>
+                <button onClick ={() => removeItem(cartItem.id)}> Excluir Produto </button>
             </StyledItem>
         </>
     );
